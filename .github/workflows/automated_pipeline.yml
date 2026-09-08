@@ -1,0 +1,40 @@
+name: CFB Automated Pipeline & Self-Correction
+
+on:
+  schedule:
+    # Runs Tuesday mornings at 06:00 UTC (post-game residual & calibration cycle)
+    - cron: '0 6 * * 2'
+  workflow_dispatch:
+
+jobs:
+  retrain_and_correct:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install Dependencies
+        run: pip install -r requirements.txt
+
+      - name: Execute Walk-Forward Validation
+        run: python src/self_correction.py --backtest --samples 300
+
+      - name: Execute Autonomous MAB Self-Correction Loop
+        run: python src/self_correction.py --correct
+
+      - name: Commit Updated Rating State
+        run: |
+          git config --global user.name "CFB Engine Bot"
+          git config --global user.email "engine@github.actions"
+          git add data/state/team_ratings.json
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Automated MAB self-correction update [skip ci]" && git push)
+
