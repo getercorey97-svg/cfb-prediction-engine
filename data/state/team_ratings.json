@@ -1,0 +1,133 @@
+{
+  "version": "2.0",
+  "base_k_factor": 32.0,
+  "mab_settings": {
+    "exploration_constant": 1.414,
+    "brier_ceiling": 0.2200,
+    "decay_rate": 0.90
+  },
+  "archetypes": {
+    "triple_option": {
+      "k_factor": 54.0,
+      "recent_brier_scores": [0.245, 0.238, 0.251],
+      "kelly_multiplier": 0.40,
+      "pulls": 14,
+      "last_updated_week": 1
+    },
+    "air_raid": {
+      "k_factor": 32.0,
+      "recent_brier_scores": [0.182, 0.179, 0.185],
+      "kelly_multiplier": 1.00,
+      "pulls": 22,
+      "last_updated_week": 1
+    },
+    "standard": {
+      "k_factor": 32.0,
+      "recent_brier_scores": [0.191, 0.188, 0.194],
+      "kelly_multiplier": 1.00,
+      "pulls": 65,
+      "last_updated_week": 1
+    },
+    "portal_heavy": {
+      "k_factor": 44.0,
+      "recent_brier_scores": [0.231, 0.224, 0.229],
+      "kelly_multiplier": 0.60,
+      "pulls": 18,
+      "last_updated_week": 1
+    }
+  },
+  "teams": {
+    "Georgia": {
+      "rating": 1860.0,
+      "pace": 26.2,
+      "archetype": "standard",
+      "returning_production": 0.78,
+      "transfer_inflow_rating": 88.5,
+      "qb_experience_snaps": 850,
+      "qb_backup_dropoff": 6.5,
+      "rest_days": 7,
+      "travel_miles": 0,
+      "lookahead_flag": false,
+      "letdown_flag": false
+    },
+    "Alabama": {
+      "rating": 1835.0,
+      "pace": 24.8,
+      "archetype": "standard",
+      "returning_production": 0.69,
+      "transfer_inflow_rating": 92.0,
+      "qb_experience_snaps": 620,
+      "qb_backup_dropoff": 7.0,
+      "rest_days": 7,
+      "travel_miles": 450,
+      "lookahead_flag": false,
+      "letdown_flag": false
+    },
+    "Ohio State": {
+      "rating": 1850.0,
+      "pace": 25.1,
+      "archetype": "standard",
+      "returning_production": 0.74,
+      "transfer_inflow_rating": 90.5,
+      "qb_experience_snaps": 920,
+      "qb_backup_dropoff": 8.0,
+      "rest_days": 7,
+      "travel_miles": 0,
+      "lookahead_flag": false,
+      "letdown_flag": false
+    },
+    "Texas": {
+      "rating": 1825.0,
+      "pace": 25.4,
+      "archetype": "standard",
+      "returning_production": 0.72,
+      "transfer_inflow_rating": 89.0,
+      "qb_experience_snaps": 780,
+      "qb_backup_dropoff": 7.5,
+      "rest_days": 7,
+      "travel_miles": 0,
+      "lookahead_flag": false,
+      "letdown_flag": false
+    },
+    "Army": {
+      "rating": 1495.0,
+      "pace": 31.8,
+      "archetype": "triple_option",
+      "returning_production": 0.82,
+      "transfer_inflow_rating": 50.0,
+      "qb_experience_snaps": 550,
+      "qb_backup_dropoff": 3.0,
+      "rest_days": 7,
+      "travel_miles": 200,
+      "lookahead_flag": false,
+      "letdown_flag": false
+    },
+    "Navy": {
+      "rating": 1470.0,
+      "pace": 31.2,
+      "archetype": "triple_option",
+      "returning_production": 0.79,
+      "transfer_inflow_rating": 50.0,
+      "qb_experience_snaps": 480,
+      "qb_backup_dropoff": 3.0,
+      "rest_days": 7,
+      "travel_miles": 150,
+      "lookahead_flag": false,
+      "letdown_flag": false
+    },
+    "Texas Tech": {
+      "rating": 1590.0,
+      "pace": 20.8,
+      "archetype": "air_raid",
+      "returning_production": 0.65,
+      "transfer_inflow_rating": 82.0,
+      "qb_experience_snaps": 610,
+      "qb_backup_dropoff": 5.5,
+      "rest_days": 7,
+      "travel_miles": 600,
+      "lookahead_flag": false,
+      "letdown_flag": false
+    }
+  }
+}
+
