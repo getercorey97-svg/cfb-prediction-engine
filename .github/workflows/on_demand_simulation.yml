@@ -1,0 +1,89 @@
+name: CFB On-Demand Simulation
+
+on:
+  workflow_dispatch:
+    inputs:
+      home_team:
+        description: 'Home Team'
+        required: true
+        type: string
+        default: 'Georgia'
+      away_team:
+        description: 'Away Team'
+        required: true
+        type: string
+        default: 'Alabama'
+      neutral_site:
+        description: 'Neutral Site Game (true/false)'
+        required: false
+        type: boolean
+        default: false
+      wind_mph:
+        description: 'Sustained Wind Speed (mph)'
+        required: false
+        type: number
+        default: 5.0
+      temp_f:
+        description: 'Game Temperature (deg F)'
+        required: false
+        type: number
+        default: 72.0
+      elevation_ft:
+        description: 'Stadium Elevation (ft)'
+        required: false
+        type: number
+        default: 500.0
+      home_qb_active:
+        description: 'Home QB1 Active (true/false)'
+        required: false
+        type: boolean
+        default: true
+      away_qb_active:
+        description: 'Away QB1 Active (true/false)'
+        required: false
+        type: boolean
+        default: true
+      simulations:
+        description: 'Monte Carlo Iterations'
+        required: false
+        type: number
+        default: 50000
+
+jobs:
+  simulate:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install System Dependencies
+        run: pip install -r requirements.txt
+
+      - name: Execute 50,000 Monte Carlo Engine
+        env:
+          CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
+          ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          python src/simulation_engine.py \
+            --home "${{ inputs.home_team }}" \
+            --away "${{ inputs.away_team }}" \
+            --sims ${{ inputs.simulations }} \
+            --neutral ${{ inputs.neutral_site }} \
+            --wind ${{ inputs.wind_mph }} \
+            --temp ${{ inputs.temp_f }} \
+            --elevation ${{ inputs.elevation_ft }} \
+            --home-qb ${{ inputs.home_qb_active }} \
+            --away-qb ${{ inputs.away_qb_active }} \
+            --summary-file $GITHUB_STEP_SUMMARY
+
