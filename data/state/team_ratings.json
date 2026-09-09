@@ -3,36 +3,52 @@
   "base_k_factor": 32.0,
   "mab_settings": {
     "exploration_constant": 1.414,
-    "brier_ceiling": 0.2200,
-    "decay_rate": 0.90
+    "brier_ceiling": 0.22,
+    "decay_rate": 0.9
   },
   "archetypes": {
     "triple_option": {
-      "k_factor": 54.0,
-      "recent_brier_scores": [0.245, 0.238, 0.251],
-      "kelly_multiplier": 0.40,
-      "pulls": 14,
+      "k_factor": 72.9,
+      "recent_brier_scores": [
+        0.245,
+        0.238,
+        0.251
+      ],
+      "kelly_multiplier": 0.24,
+      "pulls": 15,
       "last_updated_week": 1
     },
     "air_raid": {
       "k_factor": 32.0,
-      "recent_brier_scores": [0.182, 0.179, 0.185],
-      "kelly_multiplier": 1.00,
-      "pulls": 22,
+      "recent_brier_scores": [
+        0.182,
+        0.179,
+        0.185
+      ],
+      "kelly_multiplier": 1.0,
+      "pulls": 23,
       "last_updated_week": 1
     },
     "standard": {
       "k_factor": 32.0,
-      "recent_brier_scores": [0.191, 0.188, 0.194],
-      "kelly_multiplier": 1.00,
-      "pulls": 65,
+      "recent_brier_scores": [
+        0.191,
+        0.188,
+        0.194
+      ],
+      "kelly_multiplier": 1.0,
+      "pulls": 66,
       "last_updated_week": 1
     },
     "portal_heavy": {
-      "k_factor": 44.0,
-      "recent_brier_scores": [0.231, 0.224, 0.229],
-      "kelly_multiplier": 0.60,
-      "pulls": 18,
+      "k_factor": 59.4,
+      "recent_brier_scores": [
+        0.231,
+        0.224,
+        0.229
+      ],
+      "kelly_multiplier": 0.36,
+      "pulls": 19,
       "last_updated_week": 1
     }
   },
@@ -130,4 +146,3 @@
     }
   }
 }
-
