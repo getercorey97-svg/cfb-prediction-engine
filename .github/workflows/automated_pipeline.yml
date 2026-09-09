@@ -25,15 +25,20 @@ jobs:
       - name: Install Dependencies
         run: pip install -r requirements.txt
 
-      - name: Execute Walk-Forward Validation
+      - name: 1. Ingest Data, Build DuckDB & Sync State
+        env:
+          CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
+        run: python src/data_ingestion.py
+
+      - name: 2. Execute Walk-Forward Backtesting Validation
         run: python src/self_correction.py --backtest --samples 300
 
-      - name: Execute Autonomous MAB Self-Correction Loop
+      - name: 3. Execute Autonomous MAB Self-Correction Loop
         run: python src/self_correction.py --correct
 
-      - name: Commit Updated Rating State
+      - name: 4. Commit Updated Parquet, DuckDB & State Files
         run: |
           git config --global user.name "CFB Engine Bot"
           git config --global user.email "engine@github.actions"
-          git add data/state/team_ratings.json
-          git diff --quiet && git diff --staged --quiet || (git commit -m "Automated MAB self-correction update [skip ci]" && git push)
+          git add data/
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Automated data ingestion & self-correction update [skip ci]" && git push)
