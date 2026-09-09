@@ -22,33 +22,29 @@ def apply_situational_and_roster_modifiers(team_name: str, meta: dict, is_home: 
     # 1. Roster Continuity and QB Status
     ret_prod = meta.get("returning_production", 0.70)
     transfer_inflow = meta.get("transfer_inflow_rating", 75.0)
-    # Roster stability adjustment: teams with high returning production maintain baselines
     stability_factor = (ret_prod - 0.70) * 40.0 + ((transfer_inflow - 75.0) * 0.3)
     rating += stability_factor
     if not qb_starter_active:
         dropoff_pts = meta.get("qb_backup_dropoff", 6.0)
-        rating -= (dropoff_pts * 25.0)  # Convert spread points to Elo margin
+        rating -= (dropoff_pts * 25.0)
     # 2. Situational Scheduling & Circumstance Index
     if meta.get("lookahead_flag", False):
-        rating -= 35.0  # Lookahead distraction penalty
+        rating -= 35.0
     if meta.get("letdown_flag", False):
-        rating -= 45.0  # Emotional letdown penalty
+        rating -= 45.0
     rest_diff = meta.get("rest_days", 7) - 7
-    rating += (rest_diff * 6.0)  # Rest advantage/penalty
+    rating += (rest_diff * 6.0)
     travel = meta.get("travel_miles", 0)
     if travel > 1000 and not is_home:
         rating -= 20.0
     # 3. Environmental & Weather Modifiers
-    # Elevation fatigue multiplier for unaccustomed visitors
     if elevation_ft > 4000 and not is_home:
         rating -= 25.0
-    # Wind impact: suppresses passing baseline, increases play duration (slower pace)
     pass_efficiency_penalty = 0.0
     if wind_mph > 15.0:
         wind_excess = wind_mph - 15.0
         pass_efficiency_penalty = min(0.25, wind_excess * 0.015)
-        pace += min(3.0, wind_excess * 0.15)  # Run-heavy approaches increase play clock consumption
-    # Heat fatigue: games > 85F increase late-game explosive volatility
+        pace += min(3.0, wind_excess * 0.15)
     heat_fatigue_mult = 1.0
     if temp_f > 85.0:
         heat_fatigue_mult = 1.0 + min(0.20, (temp_f - 85.0) * 0.01)
@@ -68,29 +64,24 @@ def run_monte_carlo_engine(home_team: str, away_team: str, n_sims: int = 50000,
         "rating": 1500.0, "pace": 25.5, "archetype": "standard",
         "returning_production": 0.70, "transfer_inflow_rating": 75.0,
         "qb_experience_snaps": 500, "qb_backup_dropoff": 6.0,
-        "rest_days": 7, "travel_miles": 0, "lookahead_flag": false, "letdown_flag": false
+        "rest_days": 7, "travel_miles": 0, "lookahead_flag": False, "letdown_flag": False
     }
     home_meta = teams.get(home_team, default_meta)
     away_meta = teams.get(away_team, default_meta)
-    # Compute modified dynamics
     home_elo, home_pace, home_wind_pen, home_heat = apply_situational_and_roster_modifiers(
         home_team, home_meta, True, wind_mph, temp_f, elevation_ft, home_qb_active
     )
     away_elo, away_pace, away_wind_pen, away_heat = apply_situational_and_roster_modifiers(
         away_team, away_meta, False, wind_mph, temp_f, elevation_ft, away_qb_active
     )
-    # Collegiate Home Field Advantage (HFA)
     elo_delta = home_elo - away_elo
     if not neutral:
         elo_delta += 65.0
-    # Macro Possessions and Pace Modeling
     blended_pace = (home_pace + away_pace) / 2.0
     total_plays = int(3600 / blended_pace)
     possessions = max(8, min(17, int(total_plays / 6.2)))
-    # Drive Outcome Probabilities: [Punt/Turnover (0 pts), FG (3 pts), TD (7 pts)]
     base_td_prob = 0.28 + (elo_delta / 2400.0)
     home_td_p = max(0.08, min(0.65, base_td_prob - (home_wind_pen * 0.5)))
-    # Field goal accuracy decays in high wind
     home_fg_p = max(0.05, min(0.28, 0.17 - (home_wind_pen * 0.4)))
     home_stop_p = max(0.10, 1.0 - (home_td_p + home_fg_p))
     home_probs = [home_stop_p, home_fg_p, home_td_p]
@@ -99,7 +90,6 @@ def run_monte_carlo_engine(home_team: str, away_team: str, n_sims: int = 50000,
     away_stop_p = max(0.10, 1.0 - (away_td_p + away_fg_p))
     away_probs = [away_stop_p, away_fg_p, away_td_p]
     points_matrix = np.array([0, 3, 7])
-    # 50,000-Iteration Vectorized Simulation
     home_drives = np.random.choice(points_matrix, size=(n_sims, possessions), p=home_probs)
     away_drives = np.random.choice(points_matrix, size=(n_sims, possessions), p=away_probs)
     home_scores = home_drives.sum(axis=1)
@@ -110,22 +100,16 @@ def run_monte_carlo_engine(home_team: str, away_team: str, n_sims: int = 50000,
     away_win_prob = float(np.mean(margins < 0))
     median_spread = float(np.median(margins))
     median_total = float(np.median(totals))
-    # Granular Player Proposition Distributions with Game-Script Sensitivity
-    # Rushing: Continuous Gamma Distribution
     rb_base = 100.0 + ((home_elo - 1500.0) * 0.05)
     home_rb_rush = np.random.gamma(shape=8.5, scale=(rb_base / 8.5), size=n_sims)
-    # Passing: Log-Normal Distribution with wind attenuation
     qb_mu = math.log(max(100.0, (250.0 + (home_elo - 1500.0) * 0.11) * (1.0 - home_wind_pen)))
     home_qb_pass = np.random.lognormal(mean=qb_mu, sigma=0.22, size=n_sims)
-    # Passing Touchdowns: Discrete Poisson Distribution
     td_lambda = max(0.5, (home_td_p * possessions * 0.65))
     home_qb_tds = np.random.poisson(lam=td_lambda, size=n_sims)
-    # Game-Script Throttle: Starter usage compression in blowouts (>= 24 pts)
     blowout_masks = np.abs(margins) >= 24
-    home_qb_pass[blowout_masks] = home_qb_pass[blowout_masks] * 0.78  # Flatten right-tail passing
-    home_rb_rush[blowout_masks] = home_rb_rush[blowout_masks] * 0.85  # Starter touches ceded to backups
-    # Market Kelly sizing filter
-    market_line_prob = 0.5238  # -110 standard line
+    home_qb_pass[blowout_masks] = home_qb_pass[blowout_masks] * 0.78
+    home_rb_rush[blowout_masks] = home_rb_rush[blowout_masks] * 0.85
+    market_line_prob = 0.5238
     arch_key = home_meta.get("archetype", "standard")
     kelly_mult = archetypes.get(arch_key, {}).get("kelly_multiplier", 1.0)
     raw_kelly = max(0.0, ((home_win_prob - market_line_prob) / (1.0 - market_line_prob))) / 4.0
