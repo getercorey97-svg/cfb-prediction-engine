@@ -3,13 +3,47 @@ import json
 import math
 import os
 import sys
+import duckdb
 import numpy as np
 STATE_FILE = "data/state/team_ratings.json"
+DUCKDB_FILE = "data/processed/cfb_data.duckdb"
 def load_system_state():
     if os.path.exists(STATE_FILE):
         with open(STATE_FILE, "r") as f:
             return json.load(f)
     return {"base_k_factor": 32.0, "archetypes": {}, "teams": {}}
+def fetch_team_from_duckdb(team_name: str) -> dict:
+    """Queries local DuckDB columnar storage for team roster and efficiency metrics."""
+    default_record = {
+        "rating": 1520.0, "pace": 25.5, "archetype": "standard",
+        "returning_production": 0.70, "transfer_inflow_rating": 75.0,
+        "qb_experience_snaps": 500, "qb_backup_dropoff": 6.0,
+        "rest_days": 7, "travel_miles": 0, "lookahead_flag": False, "letdown_flag": False
+    }
+    if not os.path.exists(DUCKDB_FILE):
+        return default_record
+    try:
+        con = duckdb.connect(DUCKDB_FILE, read_only=True)
+        query = "SELECT rating, pace, archetype, ret_prod, portal_score, qb_snaps FROM fbs_teams WHERE LOWER(school) = LOWER(?) LIMIT 1"
+        row = con.execute(query, [team_name]).fetchone()
+        con.close()
+        if row:
+            return {
+                "rating": float(row[0]),
+                "pace": float(row[1]),
+                "archetype": str(row[2]),
+                "returning_production": float(row[3]),
+                "transfer_inflow_rating": float(row[4]),
+                "qb_experience_snaps": int(row[5]),
+                "qb_backup_dropoff": 6.0,
+                "rest_days": 7,
+                "travel_miles": 0,
+                "lookahead_flag": False,
+                "letdown_flag": False
+            }
+    except Exception as e:
+        print(f"[DUCKDB NOTICE] Query fallback: {e}")
+    return default_record
 def apply_situational_and_roster_modifiers(team_name: str, meta: dict, is_home: bool, 
                                            wind_mph: float, temp_f: float, elevation_ft: float,
                                            qb_starter_active: bool) -> tuple:
@@ -17,7 +51,7 @@ def apply_situational_and_roster_modifiers(team_name: str, meta: dict, is_home: 
     Computes modified dynamic Elo rating and pace based on environmental drag,
     scheduling spots (letdown/lookahead/rest), and roster/quarterback continuity.
     """
-    rating = meta.get("rating", 1500.0)
+    rating = meta.get("rating", 1520.0)
     pace = meta.get("pace", 25.5)
     # 1. Roster Continuity and QB Status
     ret_prod = meta.get("returning_production", 0.70)
@@ -54,20 +88,14 @@ def run_monte_carlo_engine(home_team: str, away_team: str, n_sims: int = 50000,
                            temp_f: float = 72.0, elevation_ft: float = 500.0,
                            home_qb_active: bool = True, away_qb_active: bool = True):
     """
-    Executes a 50,000-iteration vectorized Monte Carlo simulation with player prop distributions
-    and dynamic game-script usage adjustments.
+    Executes a 50,000-iteration vectorized Monte Carlo simulation with player prop distributions,
+    pulling live roster and efficiency baselines from DuckDB storage.
     """
     state = load_system_state()
-    teams = state.get("teams", {})
     archetypes = state.get("archetypes", {})
-    default_meta = {
-        "rating": 1500.0, "pace": 25.5, "archetype": "standard",
-        "returning_production": 0.70, "transfer_inflow_rating": 75.0,
-        "qb_experience_snaps": 500, "qb_backup_dropoff": 6.0,
-        "rest_days": 7, "travel_miles": 0, "lookahead_flag": False, "letdown_flag": False
-    }
-    home_meta = teams.get(home_team, default_meta)
-    away_meta = teams.get(away_team, default_meta)
+    # Pull accurate metrics directly from DuckDB
+    home_meta = fetch_team_from_duckdb(home_team)
+    away_meta = fetch_team_from_duckdb(away_team)
     home_elo, home_pace, home_wind_pen, home_heat = apply_situational_and_roster_modifiers(
         home_team, home_meta, True, wind_mph, temp_f, elevation_ft, home_qb_active
     )
@@ -124,6 +152,7 @@ def run_monte_carlo_engine(home_team: str, away_team: str, n_sims: int = 50000,
         "predicted_total": median_total,
         "home_adjusted_elo": home_elo,
         "away_adjusted_elo": away_elo,
+        "archetype": arch_key,
         "environmental_drag": {
             "wind_mph": wind_mph,
             "pass_penalty_pct": home_wind_pen * 100.0,
@@ -145,23 +174,23 @@ def format_mobile_markdown(res: dict) -> str:
     p = res["player_distributions"]
     e = res["environmental_drag"]
     return f"""## Matchup Projection: {res['away_team']} @ {res['home_team']}
-*Engine Run Depth: {res['n_sims']:,} Vectorized Iterations*
+*Engine Run Depth: {res['n_sims']:,} Vectorized Iterations (DuckDB In-Process Engine)*
 ### Game Outcome Metrics
 
 | Metric | Engine Projection | Notes |
 | :--- | :--- | :--- |
-| **{res['home_team']} Win Prob** | **{res['home_win_prob'] * 100:.2f}%** | Elo: {res['home_adjusted_elo']:.1f} |
-| **{res['away_team']} Win Prob** | **{res['away_win_prob'] * 100:.2f}%** | Elo: {res['away_adjusted_elo']:.1f} |
-| **Calculated Spread** | **{res['home_team']} {res['predicted_spread']:+.1f}** | Median Difference |
-| **Calculated Total** | **{res['predicted_total']:.1f} pts** | Full-Game Output |
-| **Quarter-Kelly Size** | **{res['quarter_kelly_pct']:.2f}%** | MAB Throttle: {res['mab_multiplier']*100:.0f}% |
+| **{res['home_team']} Win Prob** | **{res['home_win_prob'] * 100:.2f}%** | Adjusted Elo: {res['home_adjusted_elo']:.1f} |
+| **{res['away_team']} Win Prob** | **{res['away_win_prob'] * 100:.2f}%** | Adjusted Elo: {res['away_adjusted_elo']:.1f} |
+| **Calculated Spread** | **{res['home_team']} {res['predicted_spread']:+.1f}** | Median Margin |
+| **Calculated Total** | **{res['predicted_total']:.1f} pts** | Full-Game Projection |
+| **Quarter-Kelly Size** | **{res['quarter_kelly_pct']:.2f}%** | MAB Multiplier: {res['mab_multiplier']*100:.0f}% ({res['archetype'].upper()}) |
 
 ---
-### Situational & Environmental Adjustments
+### Situational & Environmental Modifiers
 
-| Condition | Parameter Value | Direct Impact |
+| Parameter | Value | Impact |
 | :--- | :--- | :--- |
-| **Sustained Wind** | {e['wind_mph']:.1f} mph | Pass Efficiency Penalty: -{e['pass_penalty_pct']:.1f}% |
+| **Wind Speed** | {e['wind_mph']:.1f} mph | Passing Efficiency Penalty: -{e['pass_penalty_pct']:.1f}% |
 | **Stadium Elevation** | {e['elevation_ft']:.0f} ft | Fatigue Index Applied |
 
 ---
@@ -169,8 +198,8 @@ def format_mobile_markdown(res: dict) -> str:
 
 | Market Projection | Median (50th) | 75th Percentile | 90th Ceiling |
 | :--- | :--- | :--- | :--- |
-| **{res['home_team']} QB Pass Yds** | {p['qb_pass_p50']:.1f} yds | {p['qb_pass_p75']:.1f} yds | {p['qb_pass_p90']:.1f} yds |
-| **{res['home_team']} RB Rush Yds** | {p['rb_rush_p50']:.1f} yds | {p['rb_rush_p75']:.1f} yds | {p['rb_rush_p90']:.1f} yds |
+| **{res['home_team']} QB Passing** | {p['qb_pass_p50']:.1f} yds | {p['qb_pass_p75']:.1f} yds | {p['qb_pass_p90']:.1f} yds |
+| **{res['home_team']} RB Rushing** | {p['rb_rush_p50']:.1f} yds | {p['rb_rush_p75']:.1f} yds | {p['rb_rush_p90']:.1f} yds |
 | **{res['home_team']} QB Over 1.5 TDs** | **{p['qb_td_over_1_5']:.1f}% Probability** | Poisson Sampling | - |
 
 """
