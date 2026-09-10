@@ -1,0 +1,39 @@
+name: CFB Game Day Scoreboard Listener
+
+on:
+  schedule:
+    # Runs every 20 minutes on Saturdays and Sundays (UTC). 
+    # 16:00 UTC = 12:00 PM EST. 07:00 UTC = 03:00 AM EST.
+    - cron: '*/20 16-23,0-7 * * 6,0'
+  workflow_dispatch:
+
+jobs:
+  poll_and_update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install System Dependencies
+        run: pip install -r requirements.txt
+
+      - name: Poll Scoreboard & Execute Sequential Kalman Updates
+        env:
+          CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
+        run: python src/live_scoreboard_listener.py
+
+      - name: Commit Updated Graph Network to Repository
+        run: |
+          git config --global user.name "CFB Engine Bot"
+          git config --global user.email "engine@github.actions"
+          git add data/
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Live Kalman state & schedule graph update [skip ci]" && git push)
