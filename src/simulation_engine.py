@@ -9,7 +9,6 @@ import numpy as np
 import pandas as pd
 import requests
 from sklearn.isotonic import IsotonicRegression
-# Optional imports for ML ensemble blending if installed in the environment
 try:
     import xgboost as xgb
     import lightgbm as lgb
@@ -25,7 +24,6 @@ def load_system_state():
             return json.load(f)
     return {"base_k_factor": 32.0, "archetypes": {}, "teams": {}}
 def fetch_team_metrics(team_name: str) -> dict:
-    """Retrieves advanced team metrics from DuckDB with defensive efficiency baselines."""
     default_record = {
         "rating": 1520.0, "pace": 25.5, "archetype": "standard",
         "returning_production": 0.70, "transfer_inflow_rating": 75.0,
@@ -59,7 +57,6 @@ def fetch_team_metrics(team_name: str) -> dict:
         print(f"[DUCKDB NOTICE] Using baseline metrics for {team_name}: {e}")
     return default_record
 def apply_situational_modifiers(meta: dict, is_home: bool, wind_mph: float, temp_f: float, elevation_ft: float, qb_active: bool):
-    """Calculates weather, travel, and rest adjustments for team pace and power rating."""
     rating = meta.get("rating", 1520.0)
     pace = meta.get("pace", 25.5)
     ret_prod = meta.get("returning_production", 0.70)
@@ -70,25 +67,22 @@ def apply_situational_modifiers(meta: dict, is_home: bool, wind_mph: float, temp
     pass_penalty = 0.0
     if wind_mph > 15.0:
         pass_penalty = min(0.28, (wind_mph - 15.0) * 0.018)
-        pace += min(3.5, (wind_mph - 15.0) * 0.15) # Wind slows game down, leans to run
+        pace += min(3.5, (wind_mph - 15.0) * 0.15) 
     if not is_home and elevation_ft > 4000:
         rating -= 25.0
         
     if temp_f > 85.0 and not is_home:
-        rating -= 15.0 # Heat fatigue penalty for visitors
+        rating -= 15.0 
     return rating, pace, pass_penalty
 def get_ml_ensemble_prediction(home_features: dict, away_features: dict, neutral: bool) -> float:
-    """SOTA Framework 1: Hybrid XGBoost & LightGBM Ensemble Blending."""
     base_diff = (home_features["rating"] - away_features["rating"]) + (0.0 if neutral else 65.0)
     ml_win_prob = 1.0 / (1.0 + 10.0 ** (-base_diff / 400.0))
     
     if not ML_AVAILABLE:
         return ml_win_prob
-    # Simulated blend weight between logistic Elo regression and tree model output
     ensemble_prob = float(np.clip(ml_win_prob * 0.70 + 0.30 * (0.5 + (base_diff / 800.0)), 0.05, 0.95))
     return ensemble_prob
 def compute_dynamic_momentum(home_pace: float, away_pace: float, home_success: float, away_success: float) -> float:
-    """SOTA Framework 2: Dynamic Momentum Clustering (mu_t)."""
     baseline_tempo = (home_pace + away_pace) / 2.0
     tempo_ratio = 25.0 / max(15.0, baseline_tempo)
     success_multiplier = (home_success / max(0.01, away_success))
@@ -100,17 +94,13 @@ def simulate_player_props(n_sims: int, total_snaps: np.ndarray, pass_ratios: np.
                           opp_pass_epa: float, opp_rush_epa: float,
                           qb_name: str, rb_name: str, wr_name: str,
                           rb_carry_share: float = 0.62, wr_target_share: float = 0.26):
-    """Simulates individual player props conditioned on snap volume, game script, and defensive matchups."""
     team_pass_attempts = np.random.poisson(lam=np.maximum(12.0, total_snaps * pass_ratios))
     team_rush_attempts = np.random.poisson(lam=np.maximum(15.0, total_snaps * (1.0 - pass_ratios)))
-    # Blowout Starter Rotation Adjustment (Starters sit when margin >= 24)
     starter_snap_pct = np.ones(n_sims)
     blowout_idx = np.abs(margins) >= 24
     starter_snap_pct[blowout_idx] = 0.72
-    # Quarterback Passing Projections
     qb_attempts = np.round(team_pass_attempts * starter_snap_pct).astype(int)
     
-    # Opponent-Adjusted Yards Per Attempt (YPA)
     base_ypa = 7.45 + (opp_pass_epa * 6.5) - (pass_penalty * 3.5)
     ypa_mu = math.log(max(4.0, base_ypa))
     simulated_ypa = np.random.lognormal(mean=ypa_mu, sigma=0.18, size=n_sims)
@@ -119,14 +109,12 @@ def simulate_player_props(n_sims: int, total_snaps: np.ndarray, pass_ratios: np.
     qb_completions = np.random.binomial(qb_attempts, comp_pct)
     td_rate = np.clip(0.055 + (opp_pass_epa * 0.04), 0.015, 0.12)
     qb_pass_tds = np.random.poisson(lam=np.maximum(0.2, qb_attempts * td_rate))
-    # Running Back Rushing Projections
     share = rb_carry_share if rb_carry_share > 0 else 0.55
     rb_attempts = np.round(team_rush_attempts * share * starter_snap_pct).astype(int)
     base_ypc = max(2.5, 4.60 + (opp_rush_epa * 5.0))
     simulated_ypc = np.random.gamma(shape=9.0, scale=(base_ypc / 9.0), size=n_sims)
     rb_rush_yards = rb_attempts * simulated_ypc
     rb_rush_tds = np.random.poisson(lam=np.maximum(0.1, rb_attempts * 0.042))
-    # Wide Receiver Receiving Projections
     wr_targets = np.random.binomial(qb_attempts, np.clip(wr_target_share, 0.05, 0.45))
     wr_catch_rate = np.clip(0.66 + (opp_pass_epa * 0.10) - (pass_penalty * 0.12), 0.45, 0.85)
     wr_receptions = np.random.binomial(wr_targets, wr_catch_rate)
@@ -177,13 +165,11 @@ def run_monte_carlo_engine(home_team: str, away_team: str, n_sims: int = 50000,
     elo_delta = (home_elo - away_elo) + (0.0 if neutral else 65.0)
     blended_pace = (home_pace + away_pace) / 2.0
     
-    # SOTA Ensembling & Momentum
     ensemble_win_prob = get_ml_ensemble_prediction(home_meta, away_meta, neutral)
     mu_t = compute_dynamic_momentum(home_pace, away_pace, home_meta.get("success_rate", 0.42), away_meta.get("success_rate", 0.42))
     
     momentum_factor = 1.0 + (home_meta.get("havoc_rate", 0.15) - away_meta.get("havoc_rate", 0.15)) * 0.45
     possessions = max(8, min(17, int(3600 / blended_pace / 6.2)))
-    # Drive Markov Transition Probabilities
     base_td_prob = (0.28 + (elo_delta / 2400.0)) * mu_t * momentum_factor
     home_td_p = max(0.08, min(0.65, base_td_prob - (home_wind * 0.5)))
     home_fg_p = max(0.05, min(0.28, 0.17 - (home_wind * 0.4)))
@@ -201,13 +187,11 @@ def run_monte_carlo_engine(home_team: str, away_team: str, n_sims: int = 50000,
     totals = home_scores + away_scores
     raw_home_win_prob = float(np.mean(margins > 0))
     blended_raw_prob = (raw_home_win_prob * 0.60) + (ensemble_win_prob * 0.40)
-    # SOTA Framework 3: Isotonic Probability Calibration
     calibrator = IsotonicRegression(out_of_bounds='clip')
     dummy_X = np.array([0.0, 0.20, 0.35, 0.50, 0.65, 0.80, 1.0])
     dummy_y = np.array([0.0, 0.18, 0.34, 0.50, 0.66, 0.83, 1.0])
     calibrator.fit(dummy_X, dummy_y)
     calibrated_home_win_prob = float(calibrator.predict([blended_raw_prob])[0])
-    # Player Prop Generation
     total_snaps = np.random.normal(loc=(3600.0 / home_pace), scale=4.5, size=n_sims)
     baseline_pass_ratio = 0.52 + home_meta.get("proe", 0.00)
     script_adjustment = np.clip(-margins * 0.005, -0.15, 0.15)
@@ -290,7 +274,6 @@ def format_markdown(res: dict) -> str:
 {json_payload}
 ```"""
 def get_today_games(target_date: str = None) -> list:
-    """Fetches all FBS games scheduled for the target date from CFBD."""
     if not target_date:
         target_date = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=-4))).strftime("%Y-%m-%d")
     
@@ -300,14 +283,33 @@ def get_today_games(target_date: str = None) -> list:
     url = f"https://api.collegefootballdata.com/games?year={year}&seasonType=regular"
     try:
         res = requests.get(url, headers=headers, timeout=15)
-        if res.status_code == 200:
-            all_games = res.json()
-            return [g for g in all_games if g.get("start_date", "").startswith(target_date)]
+        if res.status_code != 200:
+            print(f"[API ERROR] Failed to fetch schedule: HTTP {res.status_code}")
+            return []
+        
+        all_games = res.json()
+        daily_games = []
+        
+        for g in all_games:
+            utc_date_str = g.get("start_date")
+            if not utc_date_str:
+                continue
+                
+            try:
+                utc_dt = datetime.datetime.fromisoformat(utc_date_str.replace('Z', '+00:00'))
+                eastern_dt = utc_dt.astimezone(datetime.timezone(datetime.timedelta(hours=-4)))
+                game_local_date = eastern_dt.strftime("%Y-%m-%d")
+                
+                if game_local_date == target_date:
+                    daily_games.append(g)
+            except Exception:
+                pass
+                
+        return daily_games
     except Exception as e:
-        print(f"[API ERROR] Schedule query failed: {e}")
-    return []
+        print(f"[NETWORK ERROR] {e}")
+        return []
 def get_game_weather(game_id: int, year: str) -> tuple:
-    """SOTA: Dynamically pulls real-time weather for the specific venue."""
     if not CFBD_API_KEY:
         return 5.0, 72.0
     headers = {"Authorization": f"Bearer {CFBD_API_KEY}", "Accept": "application/json"}
@@ -323,7 +325,6 @@ def get_game_weather(game_id: int, year: str) -> tuple:
         pass
     return 5.0, 72.0
 def run_daily_slate(target_date: str = None, summary_file: str = ""):
-    """Loops over every game on the slate and produces a master table."""
     today_str = target_date or datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=-4))).strftime("%Y-%m-%d")
     year = today_str.split("-")[0]
     games = get_today_games(today_str)
@@ -376,7 +377,6 @@ def run_daily_slate(target_date: str = None, summary_file: str = ""):
     print(full_output)
     print("\n[SLATE COMPLETE] All scheduled games simulated successfully.")
 def is_active(val) -> bool:
-    """Robust string parsing to prevent crashes when evaluating QB status."""
     if isinstance(val, bool):
         return val
     return str(val).strip().lower() not in ["false", "0", "out", "injured", "none"]
@@ -389,8 +389,6 @@ if __name__ == "__main__":
     parser.add_argument("--wind", type=float, default=5.0)
     parser.add_argument("--temp", type=float, default=72.0)
     parser.add_argument("--elevation", type=float, default=500.0)
-    
-    # SOTA FIX: Accept string names without crashing
     parser.add_argument("--home-qb", type=str, default="True")
     parser.add_argument("--away-qb", type=str, default="True")
     parser.add_argument("--qb-name", type=str, default="Starting QB")
@@ -398,13 +396,10 @@ if __name__ == "__main__":
     parser.add_argument("--rb-share", type=float, default=0.62)
     parser.add_argument("--wr-name", type=str, default="WR1")
     parser.add_argument("--wr-share", type=float, default=0.26)
-    
-    # Automated daily slate execution
     parser.add_argument("--slate", action="store_true", default=False)
     parser.add_argument("--date", type=str, default="")
     parser.add_argument("--summary-file", type=str, default="")
     args = parser.parse_args()
-    # Route: Daily Slate or Single Matchup
     if args.slate or (not args.home and not args.away):
         run_daily_slate(target_date=args.date, summary_file=args.summary_file)
     else:
