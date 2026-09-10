@@ -13,36 +13,21 @@ on:
         required: true
         type: string
         default: 'Alabama'
-      qb_name:
+      home_qb:
         description: 'Home QB Name'
         required: false
         type: string
-        default: 'Starting QB'
-      rb_name:
+        default: 'Carson Beck'
+      home_rb:
         description: 'Home RB1 Name'
         required: false
         type: string
-        default: 'Lead RB'
-      wr_name:
-        description: 'Home WR1 Name'
+        default: 'Trevor Etienne'
+      rb_share:
+        description: 'RB1 Carry Share (e.g., 0.55)'
         required: false
         type: string
-        default: 'Primary WR'
-      rb_share:
-        description: 'RB Carry Share % (e.g., 0.65 for 65%)'
-        required: false
-        type: number
-        default: 0.62
-      wr_share:
-        description: 'WR Target Share % (e.g., 0.28 for 28%)'
-        required: false
-        type: number
-        default: 0.26
-      simulations:
-        description: 'Monte Carlo Iterations'
-        required: false
-        type: number
-        default: 50000
+        default: '0.55'
 
 jobs:
   simulate:
@@ -63,15 +48,12 @@ jobs:
       - name: Install Dependencies
         run: pip install -r requirements.txt
 
-      - name: Execute 50k Prop Simulation Engine
+      - name: Run 50k Prop Simulation
         run: |
           python src/simulation_engine.py \
             --home "${{ inputs.home_team }}" \
             --away "${{ inputs.away_team }}" \
-            --sims ${{ inputs.simulations }} \
-            --qb-name "${{ inputs.qb_name }}" \
-            --rb-name "${{ inputs.rb_name }}" \
-            --wr-name "${{ inputs.wr_name }}" \
+            --home-qb "${{ inputs.home_qb }}" \
+            --home-rb "${{ inputs.home_rb }}" \
             --rb-share ${{ inputs.rb_share }} \
-            --wr-share ${{ inputs.wr_share }} \
             --summary-file $GITHUB_STEP_SUMMARY
