@@ -1,0 +1,18 @@
+name: Pre-Game Injury Monitor
+
+on:
+  schedule:
+    # Runs every 5 minutes from 11:00 AM to 8:00 PM EST on Saturdays
+    - cron: '*/5 15-23 * * 6'
+  workflow_dispatch:
+
+jobs:
+  monitor_injuries:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install feedparser duckdb
+      - run: python src/pre_game_injury_monitor.py
