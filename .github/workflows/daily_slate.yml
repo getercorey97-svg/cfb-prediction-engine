@@ -1,38 +1,38 @@
 name: CFB Daily Slate Automation
-
-on:
-  schedule:
-    # Automatically runs at 13:00 UTC (9:00 AM EST) every Thursday, Friday, and Saturday
-    - cron: '0 13 * * 4,5,6'
-  workflow_dispatch:
-    inputs:
-      custom_date:
-        description: 'Date to simulate (YYYY-MM-DD) - Leave blank for today'
-        required: false
-        type: string
-        default: ''
-
-jobs:
-  simulate_slate:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
-          cache: 'pip'
-
-      - name: Install Dependencies
-        run: pip install -r requirements.txt
-
-      - name: Run Daily Slate Simulation
-        env:
-          CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
-        run: |
-          python src/daily_slate_runner.py "${{ inputs.custom_date }}"
+# 
+# on:
+#   schedule:
+#     # Runs at 13:00 UTC (9:00 AM EST) every Tuesday, Wednesday, Thursday, Friday, and Saturday
+#     - cron: '0 13 * * 2,3,4,5,6'
+#   workflow_dispatch:
+#     inputs:
+#       custom_date:
+#         description: 'Date to simulate (YYYY-MM-DD) - Leave blank for today'
+#         required: false
+#         type: string
+#         default: ''
+# 
+# jobs:
+#   simulate_slate:
+#     runs-on: ubuntu-latest
+#     permissions:
+#       contents: write
+# 
+#     steps:
+#       - name: Checkout Code
+#         uses: actions/checkout@v4
+# 
+#       - name: Set up Python
+#         uses: actions/setup-python@v5
+#         with:
+#           python-version: '3.11'
+#           cache: 'pip'
+# 
+#       - name: Install Dependencies
+#         run: pip install -r requirements.txt
+# 
+#       - name: Run Daily Slate Simulation
+#         env:
+#           CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
+#         run: |
+#           python src/simulation_engine.py --slate --date "${{ inputs.custom_date }}" --summary-file $GITHUB_STEP_SUMMARY
