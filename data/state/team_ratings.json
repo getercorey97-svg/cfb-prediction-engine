@@ -15,7 +15,7 @@
         0.251
       ],
       "kelly_multiplier": 0.15,
-      "pulls": 16,
+      "pulls": 17,
       "last_updated_week": 1
     },
     "air_raid": {
@@ -26,7 +26,7 @@
         0.185
       ],
       "kelly_multiplier": 1.0,
-      "pulls": 24,
+      "pulls": 25,
       "last_updated_week": 1
     },
     "standard": {
@@ -37,18 +37,18 @@
         0.194
       ],
       "kelly_multiplier": 1.0,
-      "pulls": 67,
+      "pulls": 68,
       "last_updated_week": 1
     },
     "portal_heavy": {
-      "k_factor": 80.19,
+      "k_factor": 96.0,
       "recent_brier_scores": [
         0.231,
         0.224,
         0.229
       ],
-      "kelly_multiplier": 0.22,
-      "pulls": 20,
+      "kelly_multiplier": 0.15,
+      "pulls": 21,
       "last_updated_week": 1
     }
   },
@@ -64,7 +64,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1860.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "Alabama": {
       "rating": 1835.0,
@@ -77,7 +81,11 @@
       "rest_days": 7,
       "travel_miles": 450,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1835.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "Ohio State": {
       "rating": 1850.0,
@@ -90,7 +98,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1850.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "Texas": {
       "rating": 1825.0,
@@ -103,7 +115,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1825.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "Army": {
       "rating": 1495.0,
@@ -116,7 +132,11 @@
       "rest_days": 7,
       "travel_miles": 200,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1495.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "Navy": {
       "rating": 1470.0,
@@ -129,7 +149,11 @@
       "rest_days": 7,
       "travel_miles": 150,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1470.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "Texas Tech": {
       "rating": 1590.0,
@@ -142,7 +166,11 @@
       "rest_days": 7,
       "travel_miles": 600,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1590.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "Air Force": {
       "rating": 1485.0,
@@ -155,7 +183,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1485.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "Akron": {
       "rating": 1520.0,
@@ -168,7 +200,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1520.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "App State": {
       "rating": 1580.0,
@@ -181,7 +217,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1580.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "Arizona": {
       "rating": 1520.0,
@@ -194,7 +234,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1520.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "Arizona State": {
       "rating": 1520.0,
@@ -207,7 +251,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1520.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "Arkansas": {
       "rating": 1520.0,
@@ -220,7 +268,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1520.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "Arkansas State": {
       "rating": 1520.0,
@@ -233,7 +285,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1520.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "Auburn": {
       "rating": 1520.0,
@@ -246,7 +302,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1520.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "Ball State": {
       "rating": 1520.0,
@@ -259,7 +319,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1520.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "Baylor": {
       "rating": 1520.0,
@@ -272,7 +336,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1520.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "Boise State": {
       "rating": 1640.0,
@@ -285,7 +353,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1640.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "Boston College": {
       "rating": 1520.0,
@@ -298,7 +370,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1520.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "Bowling Green": {
       "rating": 1520.0,
@@ -311,7 +387,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1520.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "Buffalo": {
       "rating": 1520.0,
@@ -324,7 +404,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1520.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "BYU": {
       "rating": 1520.0,
@@ -337,7 +421,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1520.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "California": {
       "rating": 1520.0,
@@ -350,7 +438,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1520.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "Central Michigan": {
       "rating": 1520.0,
@@ -363,7 +455,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1520.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "Charlotte": {
       "rating": 1520.0,
@@ -376,7 +472,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1520.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "Cincinnati": {
       "rating": 1520.0,
@@ -389,7 +489,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1520.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "Clemson": {
       "rating": 1740.0,
@@ -402,7 +506,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1740.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "Coastal Carolina": {
       "rating": 1520.0,
@@ -415,7 +523,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1520.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "Colorado": {
       "rating": 1520.0,
@@ -428,7 +540,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1520.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "Colorado State": {
       "rating": 1520.0,
@@ -441,7 +557,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1520.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "Delaware": {
       "rating": 1520.0,
@@ -454,7 +574,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1520.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "Duke": {
       "rating": 1520.0,
@@ -467,7 +591,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1520.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "East Carolina": {
       "rating": 1520.0,
@@ -480,7 +608,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1520.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "Eastern Michigan": {
       "rating": 1520.0,
@@ -493,7 +625,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1520.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "Florida": {
       "rating": 1520.0,
@@ -506,7 +642,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1520.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "Florida Atlantic": {
       "rating": 1520.0,
@@ -519,7 +659,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1520.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "Florida International": {
       "rating": 1520.0,
@@ -532,7 +676,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1520.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "Florida State": {
       "rating": 1690.0,
@@ -545,7 +693,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1690.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "Fresno State": {
       "rating": 1520.0,
@@ -558,7 +710,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1520.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "Georgia Southern": {
       "rating": 1520.0,
@@ -571,7 +727,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1520.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "Georgia State": {
       "rating": 1520.0,
@@ -584,7 +744,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1520.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "Georgia Tech": {
       "rating": 1520.0,
@@ -597,7 +761,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1520.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "Hawai'i": {
       "rating": 1520.0,
@@ -610,7 +778,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1520.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "Houston": {
       "rating": 1520.0,
@@ -623,7 +795,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1520.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "Illinois": {
       "rating": 1520.0,
@@ -636,7 +812,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1520.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "Indiana": {
       "rating": 1520.0,
@@ -649,7 +829,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1520.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "Iowa": {
       "rating": 1520.0,
@@ -662,7 +846,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1520.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "Iowa State": {
       "rating": 1520.0,
@@ -675,7 +863,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1520.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "Jacksonville State": {
       "rating": 1520.0,
@@ -688,7 +880,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1520.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "James Madison": {
       "rating": 1520.0,
@@ -701,7 +897,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1520.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "Kansas": {
       "rating": 1520.0,
@@ -714,7 +914,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1520.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "Kansas State": {
       "rating": 1680.0,
@@ -727,7 +931,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1680.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "Kennesaw State": {
       "rating": 1520.0,
@@ -740,7 +948,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1520.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "Kent State": {
       "rating": 1520.0,
@@ -753,7 +965,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1520.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "Kentucky": {
       "rating": 1520.0,
@@ -766,7 +982,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1520.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "Liberty": {
       "rating": 1595.0,
@@ -779,7 +999,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1595.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "Louisiana": {
       "rating": 1520.0,
@@ -792,7 +1016,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1520.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "Louisiana Tech": {
       "rating": 1520.0,
@@ -805,7 +1033,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1520.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "Louisville": {
       "rating": 1520.0,
@@ -818,7 +1050,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1520.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "LSU": {
       "rating": 1760.0,
@@ -831,7 +1067,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1760.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "Marshall": {
       "rating": 1520.0,
@@ -844,7 +1084,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1520.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "Maryland": {
       "rating": 1520.0,
@@ -857,7 +1101,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1520.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "Massachusetts": {
       "rating": 1520.0,
@@ -870,7 +1118,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1520.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "Memphis": {
       "rating": 1610.0,
@@ -883,7 +1135,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1610.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "Miami": {
       "rating": 1730.0,
@@ -896,7 +1152,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1730.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "Miami (OH)": {
       "rating": 1520.0,
@@ -909,7 +1169,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1520.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "Michigan": {
       "rating": 1745.0,
@@ -922,7 +1186,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1745.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "Michigan State": {
       "rating": 1520.0,
@@ -935,7 +1203,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1520.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "Middle Tennessee": {
       "rating": 1520.0,
@@ -948,7 +1220,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1520.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "Minnesota": {
       "rating": 1520.0,
@@ -961,7 +1237,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1520.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "Mississippi State": {
       "rating": 1520.0,
@@ -974,7 +1254,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1520.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "Missouri": {
       "rating": 1520.0,
@@ -987,7 +1271,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1520.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "Missouri State": {
       "rating": 1520.0,
@@ -1000,7 +1288,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1520.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "NC State": {
       "rating": 1520.0,
@@ -1013,7 +1305,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1520.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "Nebraska": {
       "rating": 1520.0,
@@ -1026,7 +1322,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1520.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "Nevada": {
       "rating": 1520.0,
@@ -1039,7 +1339,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1520.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "New Mexico": {
       "rating": 1520.0,
@@ -1052,7 +1356,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1520.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "New Mexico State": {
       "rating": 1520.0,
@@ -1065,7 +1373,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1520.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "North Carolina": {
       "rating": 1520.0,
@@ -1078,7 +1390,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1520.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "North Dakota State": {
       "rating": 1520.0,
@@ -1091,7 +1407,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1520.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "Northern Illinois": {
       "rating": 1520.0,
@@ -1104,7 +1424,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1520.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "North Texas": {
       "rating": 1520.0,
@@ -1117,7 +1441,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1520.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "Northwestern": {
       "rating": 1520.0,
@@ -1130,7 +1458,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1520.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "Notre Dame": {
       "rating": 1775.0,
@@ -1143,7 +1475,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1775.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "Ohio": {
       "rating": 1520.0,
@@ -1156,7 +1492,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1520.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "Oklahoma": {
       "rating": 1715.0,
@@ -1169,7 +1509,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1715.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "Oklahoma State": {
       "rating": 1660.0,
@@ -1182,7 +1526,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1660.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "Old Dominion": {
       "rating": 1520.0,
@@ -1195,7 +1543,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1520.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "Ole Miss": {
       "rating": 1750.0,
@@ -1208,7 +1560,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1750.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "Oregon": {
       "rating": 1815.0,
@@ -1221,7 +1577,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1815.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "Oregon State": {
       "rating": 1520.0,
@@ -1234,7 +1594,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1520.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "Penn State": {
       "rating": 1780.0,
@@ -1247,7 +1611,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1780.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "Pittsburgh": {
       "rating": 1520.0,
@@ -1260,7 +1628,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1520.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "Purdue": {
       "rating": 1520.0,
@@ -1273,7 +1645,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1520.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "Rice": {
       "rating": 1520.0,
@@ -1286,7 +1662,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1520.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "Rutgers": {
       "rating": 1520.0,
@@ -1299,7 +1679,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1520.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "Sacramento State": {
       "rating": 1520.0,
@@ -1312,7 +1696,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1520.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "Sam Houston": {
       "rating": 1520.0,
@@ -1325,7 +1713,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1520.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "San Diego State": {
       "rating": 1520.0,
@@ -1338,7 +1730,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1520.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "San Jos\u00e9 State": {
       "rating": 1520.0,
@@ -1351,7 +1747,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1520.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "SMU": {
       "rating": 1520.0,
@@ -1364,7 +1764,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1520.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "South Alabama": {
       "rating": 1520.0,
@@ -1377,7 +1781,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1520.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "South Carolina": {
       "rating": 1520.0,
@@ -1390,7 +1798,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1520.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "Southern Miss": {
       "rating": 1520.0,
@@ -1403,7 +1815,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1520.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "South Florida": {
       "rating": 1520.0,
@@ -1416,7 +1832,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1520.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "Stanford": {
       "rating": 1520.0,
@@ -1429,7 +1849,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1520.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "Syracuse": {
       "rating": 1520.0,
@@ -1442,7 +1866,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1520.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "TCU": {
       "rating": 1520.0,
@@ -1455,7 +1883,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1520.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "Temple": {
       "rating": 1520.0,
@@ -1468,7 +1900,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1520.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "Tennessee": {
       "rating": 1765.0,
@@ -1481,7 +1917,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1765.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "Texas A&M": {
       "rating": 1720.0,
@@ -1494,7 +1934,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1720.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "Texas State": {
       "rating": 1520.0,
@@ -1507,7 +1951,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1520.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "Toledo": {
       "rating": 1520.0,
@@ -1520,7 +1968,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1520.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "Troy": {
       "rating": 1520.0,
@@ -1533,7 +1985,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1520.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "Tulane": {
       "rating": 1590.0,
@@ -1546,7 +2002,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1590.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "Tulsa": {
       "rating": 1520.0,
@@ -1559,7 +2019,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1520.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "UAB": {
       "rating": 1520.0,
@@ -1572,7 +2036,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1520.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "UCF": {
       "rating": 1520.0,
@@ -1585,7 +2053,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1520.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "UCLA": {
       "rating": 1520.0,
@@ -1598,7 +2070,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1520.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "UConn": {
       "rating": 1520.0,
@@ -1611,7 +2087,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1520.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "UL Monroe": {
       "rating": 1520.0,
@@ -1624,7 +2104,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1520.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "UNLV": {
       "rating": 1520.0,
@@ -1637,7 +2121,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1520.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "USC": {
       "rating": 1710.0,
@@ -1650,7 +2138,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1710.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "Utah": {
       "rating": 1705.0,
@@ -1663,7 +2155,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1705.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "Utah State": {
       "rating": 1520.0,
@@ -1676,7 +2172,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1520.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "UTEP": {
       "rating": 1520.0,
@@ -1689,7 +2189,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1520.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "UTSA": {
       "rating": 1520.0,
@@ -1702,7 +2206,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1520.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "Vanderbilt": {
       "rating": 1520.0,
@@ -1715,7 +2223,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1520.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "Virginia": {
       "rating": 1520.0,
@@ -1728,7 +2240,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1520.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "Virginia Tech": {
       "rating": 1520.0,
@@ -1741,7 +2257,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1520.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "Wake Forest": {
       "rating": 1520.0,
@@ -1754,7 +2274,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1520.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "Washington": {
       "rating": 1520.0,
@@ -1767,7 +2291,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1520.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "Washington State": {
       "rating": 1520.0,
@@ -1780,7 +2308,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1520.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "Western Kentucky": {
       "rating": 1520.0,
@@ -1793,7 +2325,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1520.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "Western Michigan": {
       "rating": 1520.0,
@@ -1806,7 +2342,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1520.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "West Virginia": {
       "rating": 1520.0,
@@ -1819,7 +2359,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1520.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "Wisconsin": {
       "rating": 1520.0,
@@ -1832,7 +2376,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1520.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     },
     "Wyoming": {
       "rating": 1520.0,
@@ -1845,7 +2393,11 @@
       "rest_days": 7,
       "travel_miles": 0,
       "lookahead_flag": false,
-      "letdown_flag": false
+      "letdown_flag": false,
+      "mu": 1520.0,
+      "sigma_sq": 5625.0,
+      "game_history": [],
+      "k_factor": 32.0
     }
   }
 }
