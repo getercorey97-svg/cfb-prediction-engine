@@ -15,7 +15,7 @@
         0.251
       ],
       "kelly_multiplier": 0.15,
-      "pulls": 21,
+      "pulls": 22,
       "last_updated_week": 1
     },
     "air_raid": {
@@ -26,7 +26,7 @@
         0.185
       ],
       "kelly_multiplier": 1.0,
-      "pulls": 29,
+      "pulls": 30,
       "last_updated_week": 1
     },
     "standard": {
@@ -37,7 +37,7 @@
         0.194
       ],
       "kelly_multiplier": 1.0,
-      "pulls": 72,
+      "pulls": 73,
       "last_updated_week": 1
     },
     "portal_heavy": {
@@ -48,7 +48,7 @@
         0.229
       ],
       "kelly_multiplier": 0.15,
-      "pulls": 25,
+      "pulls": 26,
       "last_updated_week": 1
     }
   },
